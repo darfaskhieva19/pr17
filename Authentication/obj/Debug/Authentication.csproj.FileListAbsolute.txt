@@ -34,9 +34,7 @@ C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\Authentication.exe
 C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\Authentication.pdb
 C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\windows\WindowCaptcha.g.cs
 C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\windows\WindowCode.g.cs
-C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\windows\WindowResult.g.cs
 C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\PageAuthorization.g.cs
 C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\PageAuthorization.baml
 C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\windows\WindowCaptcha.baml
 C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\windows\WindowCode.baml
-C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\windows\WindowResult.baml

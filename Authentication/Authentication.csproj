@@ -65,9 +65,6 @@
     <Compile Include="windows\WindowCode.xaml.cs">
       <DependentUpon>WindowCode.xaml</DependentUpon>
     </Compile>
-    <Compile Include="windows\WindowResult.xaml.cs">
-      <DependentUpon>WindowResult.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,10 +86,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\WindowCode.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="windows\WindowResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

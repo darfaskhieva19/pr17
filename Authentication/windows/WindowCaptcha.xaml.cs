@@ -20,72 +20,76 @@ namespace Authentication
     /// </summary>
     public partial class WindowCaptcha : Window
     {
-        string str = "";
+        string str = String.Empty;
         int k;
         public WindowCaptcha(int k)
         {
             InitializeComponent();
             this.k = k;
-            Random random = new Random();
-            int count = random.Next(7, 11); //рандомное кол-во линий
-            for (int kol = 0; kol < count; kol++)
+            Random random = new Random();            
+            for (int i = 0; i < 10; i++)
             {
                 SolidColorBrush solidColor = new SolidColorBrush(Color.FromRgb((byte)random.Next(256), (byte)random.Next(256), (byte)random.Next(256)));
                 Line l = new Line()
                 {
-                    X1 = random.Next(Convert.ToInt32(CCaptcha.Width)),
-                    Y1 = random.Next(Convert.ToInt32(CCaptcha.Height)),
-                    X2 = random.Next(Convert.ToInt32(CCaptcha.Width)),
-                    Y2 = random.Next(Convert.ToInt32(CCaptcha.Height)),
+                    X1 = random.Next((int)CCaptcha.Width),
+                    Y1 = random.Next((int)CCaptcha.Height),
+                    X2 = random.Next((int)CCaptcha.Width),
+                    Y2 = random.Next((int)CCaptcha.Height),
                     Stroke = solidColor
                 };
                 CCaptcha.Children.Add(l);
             }
-            int x1 = 0;
-            int x2 = Convert.ToInt32(CCaptcha.Width / k) - 20;
-            char[] symbol = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-            char s = symbol[random.Next(symbol.Length)];
-            for(int kol= 0; kol < count; kol++)
+            int count = random.Next(7, 11);
+            string sym = "abcdefghijklmnopqrstuvwxyz01234567890";
+            for (int i = 0; i < count; i++)
             {
-                int position = random.Next(3);
+                str += sym[random.Next(sym.Length)];
+            }
+            int position = random.Next(3);
+            int margin = 20;
+            for (int i= 0; i < str.Length; i++)
+            {                
                 switch (position)
                 {
                     case 0:
                         TextBlock txt = new TextBlock()
                         {
-                            Text = s.ToString(),
+                            Text = str[i].ToString(),
                             FontSize = random.Next(20, 28),
                             FontFamily = new FontFamily("Calibri"),
-                            Padding = new Thickness(random.Next(x1, x2), random.Next(Convert.ToInt32(CCaptcha.Height)) / 2, 0, 0),
+                            Margin = new Thickness(margin, random.Next(66), 0, 0),
                             FontStyle = FontStyles.Italic
                         };
                         CCaptcha.Children.Add(txt);
+                        margin += 20;
                         break;
                     case 1:
                         TextBlock txt1 = new TextBlock()
                         {
-                            Text = s.ToString(),
+                            Text = str[i].ToString(),
                             FontSize = random.Next(20, 28),
                             FontFamily = new FontFamily("Calibri"),
-                            Padding = new Thickness(random.Next(x1, x2), random.Next(Convert.ToInt32(CCaptcha.Height)) / 2, 0, 0),
+                            Margin = new Thickness(margin, random.Next(66), 0, 0),
                             FontWeight = FontWeights.Bold
                         };
                         CCaptcha.Children.Add(txt1);
+                        margin += 20;
                         break;
                     case 2:
                         TextBlock txt2 = new TextBlock()
                         {
-                            Text = s.ToString(),
+                            Text = str[i].ToString(),
                             FontSize = random.Next(20, 28),
                             FontFamily = new FontFamily("Calibri"),
-                            Padding = new Thickness(random.Next(x1, x2), random.Next(Convert.ToInt32(CCaptcha.Height)) / 2, 0, 0),
+                            Margin = new Thickness(margin, random.Next(66), 0, 0),
                             FontStyle = FontStyles.Italic,
                             FontWeight = FontWeights.Bold
                         };
                         CCaptcha.Children.Add(txt2);
+                        margin += 20;
                         break;
                 }
-                str += s.ToString();
             }
         }
 
@@ -96,8 +100,8 @@ namespace Authentication
                 if (tbCaptcha.Text == str)
                 {
                     MessageBox.Show("Успешная авторизация!");
-                    ClassFrame.frameL.Navigate(new WindowResult());
                     Close();
+                    //ClassFrame.frameL.Navigate(new PageAuthorization(1));
                 }
                 else
                 {

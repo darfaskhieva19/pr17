@@ -21,16 +21,14 @@ namespace Authentication
     /// </summary>
     public partial class PageAuthorization : Page
     {
-
         int time = 60;
         DispatcherTimer timer = new DispatcherTimer();
+
         public PageAuthorization(int index)
         {
             InitializeComponent();
             switch (index)
             {
-                case 0:
-                    break;
                 case 1:
                     btAuto.IsEnabled = false;
                     tbLogin.IsEnabled = false;
@@ -41,16 +39,10 @@ namespace Authentication
                     timer.Start();
                     break;
                 case 2:
-                    btAuto.IsEnabled = false;                    
+                    btAuto.IsEnabled = false;
                     spCode.Visibility = Visibility.Collapsed;
-                    WindowCaptcha captcha = new WindowCaptcha(1);
-                    captcha.Show();
-                    break;
-                case 3:
-                    btAuto.IsEnabled = false;                   
-                    spCode.Visibility = Visibility.Collapsed;
-                    WindowCaptcha captcha2 = new WindowCaptcha(2);
-                    captcha2.Show();
+                    WindowCaptcha windowCaptcha = new WindowCaptcha(2);
+                    windowCaptcha.Show();
                     break;
             }
         }
@@ -66,7 +58,7 @@ namespace Authentication
             }
         }
 
-        string code = "";
+        //string code = "";
         private void btnNewCode_Click(object sender, RoutedEventArgs e)
         {
             if (tbLogin.Text == "" || tbPassword.Password == "")
@@ -78,7 +70,7 @@ namespace Authentication
                 if (tbLogin.Text == "admin" && tbPassword.Password == "admin")
                 {
                     Random rnd = new Random();
-                    code = rnd.Next(10000, 50000).ToString();
+                    string code = rnd.Next(10000, 50000).ToString();
                     MessageBox.Show(code + "\nЗапомните пожалуйста код", "Код");
                     WindowCode windowCode = new WindowCode(code, 1);
                     windowCode.ShowDialog();
@@ -101,7 +93,7 @@ namespace Authentication
                 if (tbLogin.Text == "admin" && tbPassword.Password == "admin")
                 {
                     Random rnd = new Random();
-                    code = rnd.Next(10000, 50000).ToString();
+                    string code = rnd.Next(10000, 50000).ToString();
                     MessageBox.Show(code + "\nЗапомните пожалуйста код", "Код");
                     WindowCode windowCode = new WindowCode(code, 1);
                     windowCode.ShowDialog();

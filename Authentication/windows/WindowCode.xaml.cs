@@ -55,15 +55,15 @@ namespace Authentication
                 {
                     times.Stop();
                     MessageBox.Show("Успешно!", "Авторизация");
-                    ClassFrame.frameL.Navigate(new WindowResult());
                     Close();
                 }
                 else
                 {
                     times.Stop();
-                    MessageBox.Show("Код введен неверно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Код введен неверно!", "Ошибка");
                     ClassFrame.frameL.Navigate(new PageAuthorization(index));
                     Close();
+                    
                 }
             }
         }
