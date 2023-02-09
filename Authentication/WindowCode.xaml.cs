@@ -21,9 +21,11 @@ namespace Authentication
     public partial class WindowCode : Window
     {
         DispatcherTimer times = new DispatcherTimer();
-        public int kod;
+        string kod;
+        public static int index;
         int time = 10; //время для ввода кода
-        public WindowCode(int kod)
+     
+        public WindowCode(string kod)
         {
             InitializeComponent();
             this.kod = kod;
@@ -45,7 +47,23 @@ namespace Authentication
 
         private void tbCode_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if(tbCode.Text.Length == 5)
+            {
+                if (tbCode.Text == kod)
+                {
+                    times.Stop();
+                    MessageBox.Show("Успешно!", "Авторизация");
+                    Close();
+                }
+                else
+                {
+                    times.Stop();
+                    MessageBox.Show("Код введен неверно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MainWindow window = new MainWindow(index);
+                    window.Show();
+                    Close();
+                }
+            }
         }
     }
 }

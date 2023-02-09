@@ -23,27 +23,31 @@ namespace Authentication
     {
         string login = "admin";
         string pass = "admin";
-        DispatcherTimer timer = new DispatcherTimer();
         int time = 10;
-        public MainWindow(int k)
+
+        DispatcherTimer timer = new DispatcherTimer();
+        
+        public MainWindow(int index)
         {
             InitializeComponent();
-
-            switch (k)
+            tbLogin.IsEnabled = false;
+            tbPassword.IsEnabled = false;
+            btAuto.IsEnabled = false;
+            switch (index)
             {
                 case 0:
                     break;
-                case 1:
-                    btAuto.IsEnabled = false;
+                case 1:                    
                     tbNewCode.Visibility = Visibility.Visible;
-                    timer.Interval = new TimeSpan(0, 0, 1); //свойство, запускающее таймер на 10 сек
+                    timer.Interval = new TimeSpan(0, 0, 1); 
                     timer.Tick += new EventHandler(Timer_tick);
                     timer.Start();
                     break;
                 case 2:
-                    btAuto.IsEnabled = false;
                     tbNewCode.Visibility = Visibility.Collapsed;
-
+                    borderCap.Visibility = Visibility.Visible;
+                    tbCaptcha.Visibility = Visibility.Visible;
+                    Captcha();
                     break;
             }
 
@@ -52,14 +56,29 @@ namespace Authentication
         private void Timer_tick(object sender, EventArgs e) //обработчик события для истекающего таймера
         {
             time--;
-            tbNewCode.Text = "Получить код можно через " + time + " секунд";
+            tbNewCode.Text = "Получить новый код можно через " + time.ToString() + " секунд";
             if (time == 0)
             {
                 btnNewCode.Visibility = Visibility.Visible;
+                tbNewCode.Visibility = Visibility.Collapsed;
                 timer.Stop();
             }
         }
 
+        void Captcha()
+        {
+            //Random random = new Random();
+            //Line l = new Line()
+            //{
+            //    X1 = random.Next(Convert.ToInt32(CCaptcha.Width),
+            //    Y1 = random.Next(Convert.ToInt32(CCaptcha.Width)),
+            //    X2 = random.Next(Convert.ToInt32(CCaptcha.Height)),
+            //    Y2 = random.Next(Convert.ToInt32(CCaptcha.Height)),
+            //    Stroke = Brushes.Black,
+            //};
+            //CCaptcha.Children.Add(l);
+        }
+        string code = "";
         private void btnNewCode_Click(object sender, RoutedEventArgs e)
         {
             if(tbLogin.Text == login)
@@ -67,10 +86,10 @@ namespace Authentication
                 if(tbPassword.Password == pass)
                 {
                     Random rnd = new Random();
-                    int code = rnd.Next(10000, 50000);
-                    MessageBox.Show(code.ToString() + "\nЗапомните пожалуйста код", "Код");
-                    //WindowCode windowCode = new WindowCode(kod);
-                    //windowCode.ShowDialog();
+                    code = rnd.Next(10000, 50000).ToString();
+                    MessageBox.Show(code + "\nЗапомните пожалуйста код", "Код");
+                    WindowCode windowCode = new WindowCode(code);
+                    windowCode.ShowDialog();
                 }
                 else
                 {
@@ -90,10 +109,10 @@ namespace Authentication
                 if (tbPassword.Password == pass)
                 {
                     Random rnd = new Random();
-                    int code = rnd.Next(10000, 50000);
-                    MessageBox.Show(code.ToString() + "\nЗапомните пожалуйста код", "Код");
-                    //WindowCode windowCode = new WindowCode(kod);
-                    //windowCode.ShowDialog();
+                    code = rnd.Next(10000, 50000).ToString();
+                    MessageBox.Show(code + "\nЗапомните пожалуйста код", "Код");
+                    WindowCode windowCode = new WindowCode(code);
+                    windowCode.ShowDialog();
                 }
                 else
                 {
