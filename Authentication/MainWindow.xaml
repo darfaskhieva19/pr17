@@ -22,7 +22,7 @@
                     <Canvas Name="CCaptcha" Width="300" Height="80"/>
                 </Border>
                 <GroupBox Header="Введите текст с Captcha" Width="250" HorizontalAlignment="Center" Margin="0 5 0 0" Visibility="Collapsed">
-                    <TextBox Name="tbCaptcha"/>
+                    <TextBox Name="tbCaptcha" TextChanged="tbCaptcha_TextChanged"/>
                 </GroupBox>
             </StackPanel>
         </StackPanel>
