@@ -22,16 +22,17 @@ namespace Authentication
     {
         DispatcherTimer times = new DispatcherTimer();
         string kod;
-        public static int index;
-        int time = 10; //время для ввода кода
+        int index;
+        int time = 10; 
      
-        public WindowCode(string kod)
+        public WindowCode(string kod, int index)
         {
             InitializeComponent();
             this.kod = kod;
-            times.Interval = new TimeSpan(0, 0, 1); //свойство, запускающее таймер на 10 сек
+            this.index = index;
+            times.Interval = new TimeSpan(0, 0, 1); 
             times.Tick += new EventHandler(TimerC_tick);
-            times.Start();
+            times.Start();            
         }
 
         public void TimerC_tick(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace Authentication
             if (time < 0)
             {
                 times.Stop();
+                ClassFrame.frameL.Navigate(new PageAuthorization(index));
                 Close();
             }
         }
@@ -53,14 +55,14 @@ namespace Authentication
                 {
                     times.Stop();
                     MessageBox.Show("Успешно!", "Авторизация");
+                    ClassFrame.frameL.Navigate(new WindowResult());
                     Close();
                 }
                 else
                 {
                     times.Stop();
                     MessageBox.Show("Код введен неверно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    MainWindow window = new MainWindow(index);
-                    window.Show();
+                    ClassFrame.frameL.Navigate(new PageAuthorization(index));
                     Close();
                 }
             }

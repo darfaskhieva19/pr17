@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\User\source\repos\Authentication\Authentication\obj\Debug\
+C:\Users\User\Source\Repos\ПР17\Authentication\obj\Debug\
 Authentication
 none
 false
 DEBUG;TRACE
-C:\Users\User\source\repos\Authentication\Authentication\App.xaml
-2-1914342556
+C:\Users\User\Source\Repos\ПР17\Authentication\App.xaml
+5-302211648
 
-6-1289151302
+10-1270889941
 13-1310406943
-MainWindow.xaml;WindowCode.xaml;
+MainWindow.xaml;PageAuthorization.xaml;windows\WindowCaptcha.xaml;windows\WindowCode.xaml;windows\WindowResult.xaml;
 
 False
 
